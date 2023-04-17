@@ -1,0 +1,33 @@
+$Module unleash 3 "Unleash VMOD"
+
+$Object client(
+        STRING url,
+        STRING token,
+        STRING log_level = "warn",
+        DURATION refresh_interval = 15)
+
+$Method STRING .get_cache_key(
+                [STRING user_id],
+                [STRING session_id],
+                [STRING environment],
+                [STRING app_name],
+                [STRING remote_address],
+                [STRING properties])
+
+$Method BOOL .is_enabled(
+              STRING name,
+              [STRING user_id],
+              [STRING session_id],
+              [STRING environment],
+              [STRING app_name],
+              [STRING remote_address],
+              [STRING properties])
+
+$Method STRING .get_variant(
+                STRING name,
+                [STRING user_id],
+                [STRING session_id],
+                [STRING environment],
+                [STRING app_name],
+                [STRING remote_address],
+                [STRING properties])

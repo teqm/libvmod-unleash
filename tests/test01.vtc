@@ -1,0 +1,23 @@
+varnishtest "unleash vmod `.get_variant`"
+
+server s1 {} -start
+
+varnish v1 -vcl+backend {
+	import unleash from "${vmod}";
+
+    sub vcl_init {
+        new c = unleash.client(
+            url="http://${bad_ip}:4242",
+            token="*:development.abcdefghijklmnopqrstu");
+	}
+
+	sub vcl_deliver {
+		set resp.http.x-variant = c.get_variant(name="toggle");
+	}
+} -start
+
+client c1 {
+	txreq -url "/"
+	rxresp
+	expect resp.http.x-variant == "disabled"
+} -run
