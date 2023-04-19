@@ -14,6 +14,7 @@ use unleash_client::unleash_yggdrasil::{Context as UnleashContext, VariantDef};
 use varnish::vcl::ctx::Ctx;
 
 varnish::vtc!(test01);
+varnish::vtc!(test02);
 
 const EMPTY_STRING: String = String::new();
 

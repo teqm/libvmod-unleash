@@ -1,4 +1,4 @@
-varnishtest "unleash vmod `.is_enabled`"
+varnishtest "unleash vmod `.get_variant`"
 
 server s1 {} -start
 
@@ -12,12 +12,12 @@ varnish v1 -vcl+backend {
 	}
 
 	sub vcl_deliver {
-		set resp.http.x-enabled = c.is_enabled(name="toggle");
+		set resp.http.x-variant = c.get_variant(name="toggle");
 	}
 } -start
 
 client c1 {
 	txreq -url "/"
 	rxresp
-	expect resp.http.x-enabled == "false"
+	expect resp.http.x-variant == "disabled"
 } -run
