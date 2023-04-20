@@ -17,6 +17,7 @@ varnish v1 -vcl+backend {
 } -start
 
 client c1 {
+    delay 0.5
 	txreq -url "/"
 	rxresp
 	expect resp.http.x-variant == "test-variant"
