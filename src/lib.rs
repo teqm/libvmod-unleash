@@ -17,6 +17,8 @@ varnish::vtc!(test01);
 varnish::vtc!(test02);
 varnish::vtc!(test03);
 varnish::vtc!(test04);
+varnish::vtc!(test05);
+varnish::vtc!(test06);
 
 const EMPTY_STRING: String = String::new();
 
@@ -122,7 +124,7 @@ impl client {
         Ok(client { unleash_client })
     }
 
-    pub fn get_cache_key(
+    pub fn get_hash(
         &self,
         _ctx: &mut Ctx,
         user_id: Option<&str>,

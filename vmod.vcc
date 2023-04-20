@@ -6,7 +6,7 @@ $Object client(
         STRING log_level = "warn",
         DURATION refresh_interval = 15)
 
-$Method STRING .get_cache_key(
+$Method STRING .get_hash(
                 [STRING user_id],
                 [STRING session_id],
                 [STRING environment],

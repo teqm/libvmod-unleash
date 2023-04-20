@@ -1,4 +1,4 @@
-varnishtest "unleash vmod `.is_enabled` E2E"
+varnishtest "unleash vmod `.get_hash`"
 
 server s1 {} -start
 
@@ -7,18 +7,17 @@ varnish v1 -vcl+backend {
 
     sub vcl_init {
         new c = unleash.client(
-            url="http://localhost:4242",
-            token="*:development.964a287e1b728cb5f4f3e0120df92cb5");
+            url="http://${bad_ip}:4242",
+            token="*:development.abcdefghijklmnopqrstu");
 	}
 
 	sub vcl_deliver {
-		set resp.http.x-enabled = c.is_enabled(name="test-toggle");
+		set resp.http.x-hash = c.get_hash();
 	}
 } -start
 
 client c1 {
-    delay 0.5
 	txreq -url "/"
 	rxresp
-	expect resp.http.x-enabled == "true"
+	expect resp.http.x-hash == ""
 } -run
