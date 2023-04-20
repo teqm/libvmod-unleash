@@ -15,6 +15,8 @@ use varnish::vcl::ctx::Ctx;
 
 varnish::vtc!(test01);
 varnish::vtc!(test02);
+varnish::vtc!(test03);
+varnish::vtc!(test04);
 
 const EMPTY_STRING: String = String::new();
 

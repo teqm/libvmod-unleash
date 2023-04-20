@@ -1,0 +1,23 @@
+varnishtest "unleash vmod `.get_variant` E2E"
+
+server s1 {} -start
+
+varnish v1 -vcl+backend {
+	import unleash from "${vmod}";
+
+    sub vcl_init {
+        new c = unleash.client(
+            url="http://localhost:4242",
+            token="*:development.964a287e1b728cb5f4f3e0120df92cb5");
+	}
+
+	sub vcl_deliver {
+		set resp.http.x-variant = c.get_variant(name="test-toggle", session_id="session-id");
+	}
+} -start
+
+client c1 {
+	txreq -url "/"
+	rxresp
+	expect resp.http.x-variant == "test-variant"
+} -run

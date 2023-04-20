@@ -437,9 +437,9 @@ checksum = "d2fabcfbdc87f4758337ca535fb41a6d701b65693ce38287d856d1674551ec9b"
 
 [[package]]
 name = "h2"
-version = "0.3.17"
+version = "0.3.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "66b91535aa35fea1523ad1b86cb6b53c28e0ae566ba4a460f4457e936cad7c6f"
+checksum = "17f8a914c2987b688368b5138aa05321db91f4090cf26118185672ad588bce21"
 dependencies = [
  "bytes",
  "fnv",
@@ -651,9 +651,9 @@ checksum = "830d08ce1d1d941e6b30645f1a0eb5643013d835ce3779a5fc208261dbe10f55"
 
 [[package]]
 name = "libc"
-version = "0.2.141"
+version = "0.2.142"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3304a64d199bb964be99741b7a14d26972741915b3649639149b2479bb46f4b5"
+checksum = "6a987beff54b60ffa6d51982e1aa1146bc42f19bd26be28b0586f252fccf5317"
 
 [[package]]
 name = "libloading"
@@ -676,9 +676,9 @@ dependencies = [
 
 [[package]]
 name = "linux-raw-sys"
-version = "0.3.1"
+version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d59d8c75012853d2e872fb56bc8a2e53718e2cafe1a4c823143141c6d90c322f"
+checksum = "9b085a4f2cde5781fc4b1717f2e86c62f5cda49de7ba99a7c2eae02b61c9064c"
 
 [[package]]
 name = "lock_api"
@@ -1087,9 +1087,9 @@ checksum = "08d43f7aa6b08d49f382cde6a7982047c3426db949b1424bc4b7ec9ae12c6ce2"
 
 [[package]]
 name = "rustix"
-version = "0.37.11"
+version = "0.37.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "85597d61f83914ddeba6a47b3b8ffe7365107221c2e557ed94426489fefb5f77"
+checksum = "f79bef90eb6d984c72722595b5b1348ab39275a5e5123faca6863bf07d75a4e0"
 dependencies = [
  "bitflags",
  "errno",
@@ -1536,7 +1536,7 @@ checksum = "c0edd1e5b14653f783770bce4a4dabb4a5108a5370a5f5d8cfe8710c361f6c8b"
 [[package]]
 name = "unleash-client"
 version = "0.1.0"
-source = "git+https://github.com/teqm/unleash-client-rs?branch=master#94ec24b27152b595be6f3b96fc3600cdd0f325a3"
+source = "git+https://github.com/teqm/unleash-client-rs?branch=master#c6941a5976921a0f7f77192dcd7c8b74fe3fb759"
 dependencies = [
  "chrono",
  "reqwest",
@@ -1548,9 +1548,9 @@ dependencies = [
 
 [[package]]
 name = "unleash-types"
-version = "0.9.4"
+version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "090b39230921b4172d055758306417f15d81202968305a063a62c4ab4975ae39"
+checksum = "e8fa6ce806a0ce981000da3b532126281e5d07fda344467ac39b03d308f4b792"
 dependencies = [
  "chrono",
  "derive_builder",
@@ -1560,9 +1560,9 @@ dependencies = [
 
 [[package]]
 name = "unleash-yggdrasil"
-version = "0.5.3"
+version = "0.5.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ebd697f12aea246f16aeab33428db8ed2c9989807a6b9f90ce55b4bd3e8d1e7e"
+checksum = "bac52da497190a30d7d636ef7c01fa7d57daac39748a2301519266b7ebdb9d63"
 dependencies = [
  "chrono",
  "convert_case",
