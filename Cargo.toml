@@ -2,6 +2,7 @@
 name = "vmod_unleash"
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/teqm/libvmod-unleash"
 
 [build-dependencies]
 varnish = { git = "https://github.com/gquintard/varnish-rs", branch = "6.0" }
@@ -18,3 +19,10 @@ tracing-subscriber = "0.3.16"
 
 [lib]
 crate-type = ["cdylib"]
+
+[package.metadata.deb]
+maintainer = "teqm <szybowskitomasz@gmail.com>"
+copyright = "2023, teqm <szybowskitomasz@gmail.com>"
+assets = [
+    ["target/release/libvmod_unleash.so", "usr/lib/varnish/vmods/", "644"]
+]
