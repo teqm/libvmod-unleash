@@ -26,6 +26,8 @@ jobs:
   release:
     needs: [generate-changelog]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout
