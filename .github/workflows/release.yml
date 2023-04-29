@@ -41,10 +41,10 @@ jobs:
           load: true
           tags: libvmod-unleash:latest
 
-      - name: Prepare VMOD_VERSION env
+      - name: Prepare `VMOD_VERSION` env
         env:
           GIT_TAG: ${{ github.ref }}
-        run: echo "VMOD_VERSION=${VERSION//v}" >> $GITHUB_ENV
+        run: echo "VMOD_VERSION=${GIT_TAG//v}" >> $GITHUB_ENV
 
       - name: Copy release artifacts
         run: |
