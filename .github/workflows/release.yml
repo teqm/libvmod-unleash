@@ -25,6 +25,11 @@ jobs:
 
   release:
     needs: [generate-changelog]
+    strategy:
+      matrix:
+        pkg:
+          - deb
+          - rpm
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -40,6 +45,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
+          file: ./pkg/${{ matrix.pkg }}/Dockerfile
           load: true
           tags: libvmod-unleash:latest
 
@@ -51,10 +57,15 @@ jobs:
       - name: Copy release artifacts
         run: |
           docker create -it --name libvmod-unleash libvmod-unleash:latest
-          docker cp libvmod-unleash:/tmp/libvmod-unleash/target/debian/vmod-unleash_${{ env.VMOD_VERSION }}_amd64.deb .
+          
+          if [ "${{ matrix.pkg }}" = "deb" ]; then
+            docker cp libvmod-unleash:/tmp/libvmod-unleash/target/debian/vmod-unleash_${{ env.VMOD_VERSION }}_amd64.deb .
+          else
+            docker cp libvmod-unleash:/root/rpmbuild/RPMS/x86_64/vmod-unleash-${{ env.VMOD_VERSION }}-1.el7.x86_64.rpm .
+          fi
 
       - name: Create Github release
         uses: softprops/action-gh-release@v1
         with:
           body: ${{ needs.generate-changelog.outputs.release-body }}
-          files: vmod-unleash_${{ env.VMOD_VERSION }}_amd64.deb
+          files: vmod-unleash*{rpm,deb}
