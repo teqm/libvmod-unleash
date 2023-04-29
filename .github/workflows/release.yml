@@ -43,7 +43,7 @@ jobs:
 
       - name: Prepare `VMOD_VERSION` env
         env:
-          GIT_TAG: ${{ github.ref }}
+          GIT_TAG: ${{ github.ref_name }}
         run: echo "VMOD_VERSION=${GIT_TAG//v}" >> $GITHUB_ENV
 
       - name: Copy release artifacts
