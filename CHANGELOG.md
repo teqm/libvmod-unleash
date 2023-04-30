@@ -2,12 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## 0.1.0 (2023-04-29)
+## 0.1.0 (2023-04-30)
 
 ### Continuous Integration
 
 - add ci workflow ([79d8893](https://github.com/teqm/libvmod-unleash/commit/79d88931fbdbdb66dda20ac977aab272c035ab48))
 - reorder steps ([b71447f](https://github.com/teqm/libvmod-unleash/commit/b71447f6b91b43cd2972610e2dece602bcbd9b1e))
+- load image into docker use ([44fbcb8](https://github.com/teqm/libvmod-unleash/commit/44fbcb8aacc54d03c47a1fb5a5c4154e064abe63))
+- fix `VMOD_VERSION` env step ([59efd95](https://github.com/teqm/libvmod-unleash/commit/59efd95e0d17757810021015ff470a10fc318b82))
+- use `github.ref_name` ([fdc72f3](https://github.com/teqm/libvmod-unleash/commit/fdc72f3e833dc76794f687efd866684134a441e4))
+- fix permissions ([35fdd67](https://github.com/teqm/libvmod-unleash/commit/35fdd674a3569ae9233717c05d27db127e940d59))
 
 ### Documentation
 
@@ -17,10 +21,12 @@ All notable changes to this project will be documented in this file. See [Conven
 
 - init `vmod_unleash` ([63228c0](https://github.com/teqm/libvmod-unleash/commit/63228c069c4808b83a770196a32bff8e09edb81d))
 - build debian package ([#1](https://github.com/teqm/libvmod-unleash/issues/1)) ([0c75a8c](https://github.com/teqm/libvmod-unleash/commit/0c75a8cddfce475f2d33770516bde43b92e2d1a9))
+- add rpm support ([#2](https://github.com/teqm/libvmod-unleash/issues/2)) ([24b2730](https://github.com/teqm/libvmod-unleash/commit/24b2730ba1ac24f8da77ec5439bc87e0fb33e55d))
 
 ### Miscellaneous Tasks
 
 - add git-cliff config ([726d932](https://github.com/teqm/libvmod-unleash/commit/726d932671bd0f7807434754a54bb09aad053dfc))
+- release v0.1.0 ([fb012b6](https://github.com/teqm/libvmod-unleash/commit/fb012b6caf0dafce6d9c77351b55e9349cc487ee))
 
 ### Tests
 
