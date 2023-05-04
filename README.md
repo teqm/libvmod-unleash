@@ -72,7 +72,7 @@ sub vcl_recv {
     
     if (req.http-x-variant == "A") {
         # variant A
-    } elseif (req.http-x-variant == "B") {
+    } else if (req.http-x-variant == "B") {
         # variant B
     } else {
         # variant C
