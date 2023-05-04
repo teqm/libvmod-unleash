@@ -39,7 +39,7 @@ jobs:
         uses: orhun/git-cliff-action@v2
         id: changelog
         with:
-          args: --latest --strip header
+          args: --unreleased --strip header
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
