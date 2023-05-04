@@ -1,0 +1,44 @@
+name: Release PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+
+jobs:
+  create-release-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog
+        uses: orhun/git-cliff-action@v2
+        with:
+          args: --tag ${{ inputs.version }} -o CHANGELOG.md
+
+      - name: Install cargo set-version
+        run: cargo install cargo-edit --no-default-features --features="set-version"
+
+      - name: Set package's version
+        env:
+          VERSION: ${{ inputs.version }}
+        run: cargo set-version ${VERSION//v}
+
+      - name: Generate Pull Request body
+        uses: orhun/git-cliff-action@v2
+        id: changelog
+        with:
+          args: --latest --strip header
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'chore(release): prepare for ${{ inputs.version }}'
+          title: 'chore(release): prepare for ${{ inputs.version }}'
+          body: ${{ steps.changelog.outputs.release-body }}
+          branch: release-pr
