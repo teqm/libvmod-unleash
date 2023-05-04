@@ -35,21 +35,10 @@ jobs:
           VERSION: ${{ inputs.version }}
         run: cargo set-version ${VERSION//v}
 
-      - name: Generate Pull Request body
-        uses: orhun/git-cliff-action@v2
-        id: changelog
-        env:
-          OUTPUT: CHANGES.md
-        with:
-          args: --unreleased --strip header
-
-      - name: Cleanup git-cliff output
-        run: rm CHANGES.md
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           commit-message: 'chore(release): prepare for ${{ inputs.version }}'
           title: 'chore(release): prepare for ${{ inputs.version }}'
-          body: ${{ steps.changelog.outputs.release-body }}
+          body: This PR was opened by the [Release PR](https://github.com/teqm/libvmod-unleash/actions/workflows/release-pr.yml) GitHub workflow. When you're ready to do a release, you can merge this and create matching tag - the package will be released automatically.
           branch: release-pr
