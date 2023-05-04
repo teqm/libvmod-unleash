@@ -6,6 +6,10 @@ on:
       version:
         required: true
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   create-release-pr:
     runs-on: ubuntu-latest
@@ -18,8 +22,10 @@ jobs:
 
       - name: Generate changelog
         uses: orhun/git-cliff-action@v2
+        env:
+          OUTPUT: CHANGELOG.md
         with:
-          args: --tag ${{ inputs.version }} -o CHANGELOG.md
+          args: --tag ${{ inputs.version }}
 
       - name: Install cargo set-version
         run: cargo install cargo-edit --no-default-features --features="set-version"
