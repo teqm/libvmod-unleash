@@ -264,7 +264,7 @@ impl client {
 
 #[cfg(test)]
 mod test {
-    use super::{decode_jwt, Context};
+    use super::{decode_jwt, try_props_from_str, Context};
     use test_case::test_case;
     use unleash_client::unleash_yggdrasil::Context as UnleashContext;
 
@@ -292,5 +292,14 @@ mod test {
             UnleashContext::from(context.into()).user_id,
             expected.map(String::from)
         );
+    }
+
+    #[test]
+    pub fn test_try_props_from_str() {
+        let props = try_props_from_str("key1=value1,key2=value2,key3=value3").unwrap();
+
+        assert_eq!(props.get("key1").unwrap(), &"value1".to_string());
+        assert_eq!(props.get("key2").unwrap(), &"value2".to_string());
+        assert_eq!(props.get("key3").unwrap(), &"value3".to_string());
     }
 }
