@@ -2,7 +2,8 @@ varnish::boilerplate!();
 
 mod tracing_subscriber_vsl;
 
-use serde::Serialize;
+use base64::{engine::general_purpose::URL_SAFE_NO_PAD as base64_url, Engine};
+use serde::{Deserialize, Serialize};
 use std::collections::hash_map::DefaultHasher;
 use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
@@ -41,6 +42,24 @@ fn try_props_from_str(s: &str) -> Result<HashMap<String, String>, ()> {
         .collect()
 }
 
+#[derive(Debug, Deserialize)]
+struct Claims {
+    sub: String,
+}
+
+fn decode_jwt(token: &str) -> Option<Claims> {
+    let parts = token.split(".").take(3).collect::<Vec<_>>();
+
+    if parts.len() != 3 {
+        return None;
+    }
+
+    match base64_url.decode(parts[1]) {
+        Ok(payload) => serde_json::from_slice::<Claims>(payload.as_slice()).ok(),
+        Err(_) => None,
+    }
+}
+
 fn calculate_hash<T: Hash>(t: &T) -> u64 {
     let mut s = DefaultHasher::new();
     t.hash(&mut s);
@@ -54,12 +73,31 @@ struct Context<'a> {
     app_name: Option<&'a str>,
     remote_address: Option<&'a str>,
     properties: Option<&'a str>,
+    jwt: Option<&'a str>,
+}
+
+impl Default for Context<'_> {
+    fn default() -> Self {
+        Context {
+            user_id: None,
+            session_id: None,
+            environment: None,
+            app_name: None,
+            remote_address: None,
+            properties: None,
+            jwt: None,
+        }
+    }
 }
 
 impl Into<UnleashContext> for Context<'_> {
     fn into(self) -> UnleashContext {
         UnleashContext {
-            user_id: self.user_id.map(String::from),
+            user_id: self.user_id.map(String::from).or_else(|| {
+                self.jwt
+                    .map(|jwt| decode_jwt(jwt).map(|claims| claims.sub))
+                    .flatten()
+            }),
             session_id: self.session_id.map(String::from),
             environment: self.environment.map(String::from),
             app_name: self.app_name.map(String::from),
@@ -133,6 +171,7 @@ impl client {
         app_name: Option<&str>,
         remote_address: Option<&str>,
         properties: Option<&str>,
+        jwt: Option<&str>,
     ) -> String {
         let context = Context {
             user_id,
@@ -141,6 +180,7 @@ impl client {
             app_name,
             remote_address,
             properties,
+            jwt,
         };
 
         let toggles = match self.unleash_client.resolve_all(&context.into()) {
@@ -179,6 +219,7 @@ impl client {
         app_name: Option<&str>,
         remote_address: Option<&str>,
         properties: Option<&str>,
+        jwt: Option<&str>,
     ) -> bool {
         let context = Context {
             user_id,
@@ -187,6 +228,7 @@ impl client {
             app_name,
             remote_address,
             properties,
+            jwt,
         };
 
         self.unleash_client.is_enabled(name, &context.into())
@@ -202,6 +244,7 @@ impl client {
         app_name: Option<&str>,
         remote_address: Option<&str>,
         properties: Option<&str>,
+        jwt: Option<&str>,
     ) -> String {
         let context = Context {
             user_id,
@@ -210,10 +253,44 @@ impl client {
             app_name,
             remote_address,
             properties,
+            jwt,
         };
 
         let variant = self.unleash_client.get_variant(name, &context.into());
 
         variant.name
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::{decode_jwt, Context};
+    use test_case::test_case;
+    use unleash_client::unleash_yggdrasil::Context as UnleashContext;
+
+    #[test_case(".eyJzdWIiOiIxMjM0NSJ9.", Some("12345"); "should decode sub claim")]
+    #[test_case(".e30.", None; "should return none when sub claim is missing")]
+    #[test_case(".abcdefghijklmnopqrstu.", None; "should return none when payload is an invalid base64")]
+    #[test_case("eyJzdWIiOiIxMjM0NSJ9", None; "should return none when jwt is missing header or signature")]
+    pub fn test_decode_jwt(token: &str, expected: Option<&str>) {
+        assert_eq!(
+            decode_jwt(token).map(|claims| claims.sub),
+            expected.map(String::from)
+        );
+    }
+
+    #[test_case(Some("userId"), Some(".eyJzdWIiOiIxMjM0NSJ9."), Some("userId"); "should use user_id if present")]
+    #[test_case(None, Some(".eyJzdWIiOiIxMjM0NSJ9."), Some("12345"); "should fallback to jwt")]
+    pub fn test_context_user_id(user_id: Option<&str>, jwt: Option<&str>, expected: Option<&str>) {
+        let context = Context {
+            user_id,
+            jwt,
+            ..Default::default()
+        };
+
+        assert_eq!(
+            UnleashContext::from(context.into()).user_id,
+            expected.map(String::from)
+        );
     }
 }

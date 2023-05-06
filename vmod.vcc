@@ -12,7 +12,8 @@ $Method STRING .get_hash(
                 [STRING environment],
                 [STRING app_name],
                 [STRING remote_address],
-                [STRING properties])
+                [STRING properties],
+                [STRING jwt])
 
 $Method BOOL .is_enabled(
               STRING name,
@@ -21,7 +22,8 @@ $Method BOOL .is_enabled(
               [STRING environment],
               [STRING app_name],
               [STRING remote_address],
-              [STRING properties])
+              [STRING properties],
+              [STRING jwt])
 
 $Method STRING .get_variant(
                 STRING name,
@@ -30,4 +32,5 @@ $Method STRING .get_variant(
                 [STRING environment],
                 [STRING app_name],
                 [STRING remote_address],
-                [STRING properties])
+                [STRING properties],
+                [STRING jwt])
