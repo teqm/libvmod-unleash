@@ -7,26 +7,7 @@ on:
       - master
 
 jobs:
-  run-check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Varnish Cache
-        run: |
-          curl -s https://packagecloud.io/install/repositories/varnishcache/varnish60lts/script.deb.sh | sudo bash
-          sudo apt-get install varnish=6.0.11-1~jammy varnish-dev=6.0.11-1~jammy
-
-      - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Run check
-        run: cargo check --all-targets
-
   run-linter:
-    needs: [run-check]
     runs-on: ubuntu-latest
 
     steps:
@@ -47,7 +28,6 @@ jobs:
         run: cargo clippy --all-targets --all-features
 
   run-fmt:
-    needs: [run-check]
     runs-on: ubuntu-latest
 
     steps:
@@ -63,7 +43,6 @@ jobs:
         run: cargo fmt --all -- --check
 
   run-tests:
-    needs: [run-check]
     runs-on: ubuntu-latest
 
     steps:
