@@ -64,7 +64,7 @@
           "name": "test-variant",
           "weight": 1000,
           "overrides": [],
-          "stickiness": "sessionId",
+          "stickiness": "default",
           "weightType": "variable"
         }
       ]
