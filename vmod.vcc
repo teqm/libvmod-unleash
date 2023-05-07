@@ -4,7 +4,8 @@ $Object client(
         STRING url,
         STRING token,
         STRING log_level = "warn",
-        DURATION refresh_interval = 15)
+        DURATION refresh_interval = 15,
+        BOOL disable_metrics = 0)
 
 $Method STRING .get_hash(
                 [STRING user_id],

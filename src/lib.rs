@@ -134,6 +134,7 @@ impl client {
         token: &str,
         log_level: &str,
         refresh_interval: Duration,
+        disable_metrics: bool,
     ) -> Result<Self, String> {
         tracing_subscriber_vsl::set_as_global_default(
             log_level.parse::<Level>().unwrap_or(Level::WARN),
@@ -142,6 +143,7 @@ impl client {
         let unleash_client = Arc::new(
             UnleashBuilder::default()
                 .refresh_interval(refresh_interval)
+                .disable_metrics(disable_metrics)
                 .build(
                     url.to_string(),
                     "libvmod-unleash".to_string(),
