@@ -1595,7 +1595,7 @@ checksum = "c0edd1e5b14653f783770bce4a4dabb4a5108a5370a5f5d8cfe8710c361f6c8b"
 [[package]]
 name = "unleash-client"
 version = "0.1.0"
-source = "git+https://github.com/teqm/unleash-client-rs?branch=master#f3f21dc54da251b9e6b44283c9d1aa697fc320ca"
+source = "git+https://github.com/teqm/unleash-client-rs?branch=master#a2192c413c3a6e1219d2eae7496c61cf5464a945"
 dependencies = [
  "chrono",
  "reqwest",
