@@ -74,7 +74,7 @@ jobs:
           docker create -it --name libvmod-unleash libvmod-unleash:latest
           
           if [ "${{ matrix.pkg }}" = "deb" ]; then
-            docker cp libvmod-unleash:/tmp/libvmod-unleash/target/debian/vmod-unleash_${{ env.VMOD_VERSION }}_${PLATFORM//linux\/}.deb .
+            docker cp libvmod-unleash:/tmp/libvmod-unleash/target/debian/vmod-unleash_${{ env.VMOD_VERSION }}_${PLATFORM//linux\/}.deb vmod-unleash_${{ env.VMOD_VERSION }}_bullseye_${PLATFORM//linux\/}.deb
           else
             docker cp libvmod-unleash:/root/rpmbuild/RPMS/x86_64/vmod-unleash-${{ env.VMOD_VERSION }}-1.el7.x86_64.rpm .
           fi
