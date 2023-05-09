@@ -7,6 +7,17 @@ $Object client(
         DURATION refresh_interval = 15,
         BOOL disable_metrics = 0)
 
+Arguments
+    url: URL of the Unleash server the client is connecting to.
+
+    token: client token used when connecting to Unleash server.
+
+    log_level: maximum verbosity level that will be enabled by the tracing subscriber, can be trace, debug, info, warn or error (default warn).
+
+    refresh_interval: time interval with which the client should sync the feature toggles from the Unleash server (default 15s).
+
+    disable_metrics: specifies if the client should not log metrics to the Unleash server (default false).
+
 $Method STRING .get_hash(
                 [STRING user_id],
                 [STRING session_id],
@@ -15,6 +26,24 @@ $Method STRING .get_hash(
                 [STRING remote_address],
                 [STRING properties],
                 [STRING jwt])
+
+Arguments
+    user_id: id of the user.
+
+    session_id: id of the session.
+
+    environment: environment this application is running in.
+
+    app_name: the application name.
+
+    remote_address: IP address of the machine or client.
+
+    properties: comma-separated list of additional properties, for example `foo=bar,bar=baz`.
+
+    jwt: fallback identifier for the current user, used if `user_id` is not specified
+Return value
+    A `STRING` that contains the hash of computed feature set for the given context.
+    If no Unleash data has been fetched yet, an empty string is returned.
 
 $Method BOOL .is_enabled(
               STRING name,
@@ -26,6 +55,23 @@ $Method BOOL .is_enabled(
               [STRING properties],
               [STRING jwt])
 
+Arguments
+    name: toggle name.
+
+    user_id: id of the user.
+
+    session_id: id of the session.
+
+    environment: environment this application is running in.
+
+    app_name: the application name.
+
+    remote_address: IP address of the machine or client.
+
+    properties: comma-separated list of additional properties, for example `foo=bar,bar=baz`.
+
+    jwt: fallback identifier for the current user, used if `user_id` is not specified
+
 $Method STRING .get_variant(
                 STRING name,
                 [STRING user_id],
@@ -35,3 +81,19 @@ $Method STRING .get_variant(
                 [STRING remote_address],
                 [STRING properties],
                 [STRING jwt])
+Arguments
+    name: toggle name.
+
+    user_id: id of the user.
+
+    session_id: id of the session.
+
+    environment: environment this application is running in.
+
+    app_name: the application name.
+
+    remote_address: IP address of the machine or client.
+
+    properties: comma-separated list of additional properties, for example `foo=bar,bar=baz`.
+
+    jwt: fallback identifier for the current user, used if `user_id` is not specified
