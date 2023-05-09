@@ -27,12 +27,6 @@ jobs:
     needs: [generate-changelog]
     strategy:
       matrix:
-        pkg:
-          - deb
-          - rpm
-        platform:
-          - linux/amd64
-          - linux/arm64
         include:
           - pkg: deb
             platform: linux/amd64
