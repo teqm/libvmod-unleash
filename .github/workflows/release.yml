@@ -30,6 +30,16 @@ jobs:
         pkg:
           - deb
           - rpm
+        platform:
+          - linux/amd64
+          - linux/arm64
+        include:
+          - pkg: deb
+            platform: linux/amd64
+          - pkg: deb
+            platform: linux/arm64
+          - pkg: rpm
+            platform: linux/amd64
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -40,11 +50,14 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+        with:
+          platforms: ${{ matrix.platform }}
 
       - name: Build
         uses: docker/build-push-action@v4
         with:
           context: .
+          platforms: ${{ matrix.platform }}
           file: ./pkg/${{ matrix.pkg }}/Dockerfile
           load: true
           tags: libvmod-unleash:latest
@@ -55,11 +68,13 @@ jobs:
         run: echo "VMOD_VERSION=${GIT_TAG//v}" >> $GITHUB_ENV
 
       - name: Copy release artifacts
+        env:
+          PLATFORM: ${{ matrix.platform }}
         run: |
           docker create -it --name libvmod-unleash libvmod-unleash:latest
           
           if [ "${{ matrix.pkg }}" = "deb" ]; then
-            docker cp libvmod-unleash:/tmp/libvmod-unleash/target/debian/vmod-unleash_${{ env.VMOD_VERSION }}_amd64.deb .
+            docker cp libvmod-unleash:/tmp/libvmod-unleash/target/debian/vmod-unleash_${{ env.VMOD_VERSION }}_${PLATFORM//linux\/}.deb .
           else
             docker cp libvmod-unleash:/root/rpmbuild/RPMS/x86_64/vmod-unleash-${{ env.VMOD_VERSION }}-1.el7.x86_64.rpm .
           fi
