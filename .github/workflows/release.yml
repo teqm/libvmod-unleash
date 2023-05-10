@@ -56,21 +56,20 @@ jobs:
           load: true
           tags: libvmod-unleash:latest
 
-      - name: Prepare `VMOD_VERSION` env
-        env:
-          GIT_TAG: ${{ github.ref_name }}
-        run: echo "VMOD_VERSION=${GIT_TAG//v}" >> $GITHUB_ENV
-
       - name: Copy release artifacts
         env:
           PLATFORM: ${{ matrix.platform }}
+          GIT_TAG: ${{ github.ref_name }}
         run: |
+          VMOD_VERSION=${GIT_TAG//v}
+          ARCH=${PLATFORM//linux\/}
+          
           docker create -it --name libvmod-unleash libvmod-unleash:latest
           
           if [ "${{ matrix.pkg }}" = "deb" ]; then
-            docker cp libvmod-unleash:/tmp/libvmod-unleash/target/debian/vmod-unleash_${{ env.VMOD_VERSION }}_${PLATFORM//linux\/}.deb vmod-unleash_${{ env.VMOD_VERSION }}_bullseye_${PLATFORM//linux\/}.deb
+            docker cp libvmod-unleash:/tmp/libvmod-unleash/target/debian/vmod-unleash_$VMOD_VERSION_$ARCH.deb vmod-unleash_$VMOD_VERSION_bullseye_$ARCH.deb
           else
-            docker cp libvmod-unleash:/root/rpmbuild/RPMS/x86_64/vmod-unleash-${{ env.VMOD_VERSION }}-1.el7.x86_64.rpm .
+            docker cp libvmod-unleash:/root/rpmbuild/RPMS/x86_64/vmod-unleash-$VMOD_VERSION-1.el7.x86_64.rpm .
           fi
 
       - name: Create Github release
