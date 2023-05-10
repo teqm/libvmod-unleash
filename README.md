@@ -50,7 +50,7 @@ sub vcl_init {
 }
 
 sub vcl_recv {
-    if (c.is_enabled(name="toggle")) {
+    if (client.is_enabled(name="toggle")) {
         # do new, flashy thing
     } else {
         # do old, boring stuff
@@ -68,7 +68,7 @@ sub vcl_init {
 }
 
 sub vcl_recv {
-    set req.http.x-variant = c.get_variant(name="toggle");
+    set req.http.x-variant = client.get_variant(name="toggle");
     
     if (req.http-x-variant == "A") {
         # variant A
@@ -96,7 +96,7 @@ sub vcl_init {
 sub vcl_recv {
     # this header must be included in backend's Vary header,
     # to split the cache based on a computed feature set
-    set req.http.x-features = c.get_hash(
+    set req.http.x-features = client.get_hash(
         user_id=req.http.user-id,
         session_id=req.http.session-id);
 }
