@@ -15,7 +15,7 @@ services:
       - libvmod-unleash
 
   libvmod-unleash.unleash-server:
-    image: unleashorg/unleash-server:latest
+    image: unleashorg/unleash-server:4.22.5
     container_name: libvmod-unleash.unleash-server
     restart: unless-stopped
     environment:
