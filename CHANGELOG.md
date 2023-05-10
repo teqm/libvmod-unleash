@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.11-1](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-1...v0.1.0) (2023-05-10)
+
+### Continuous Integration
+
+- remove unnecessary step ([f9575aa](https://github.com/teqm/libvmod-unleash/commit/f9575aa709c0b990f3cab184c5d023a88c4e2eab))
+- remove codename from deb package ([14acfc7](https://github.com/teqm/libvmod-unleash/commit/14acfc7ec8869bfe7c8815846358c3ca4b12e931))
+- lock unleash server version ([#15](https://github.com/teqm/libvmod-unleash/issues/15)) ([03539aa](https://github.com/teqm/libvmod-unleash/commit/03539aae9efc149e27be98c5463a9b8436bd69dc))
+
+### Documentation
+
+- fix vcl examples ([e9fb23a](https://github.com/teqm/libvmod-unleash/commit/e9fb23a75bcc1ae2f8880bf3111cbbbe9a6f0725))
+
+### Features
+
+- add pkg revision ([#16](https://github.com/teqm/libvmod-unleash/issues/16)) ([281ff20](https://github.com/teqm/libvmod-unleash/commit/281ff20f0d2524e7c9330baed93059d37c09d035))
+
 ## 0.1.0 (2023-05-09)
 
 ### Continuous Integration
@@ -21,6 +37,7 @@ All notable changes to this project will be documented in this file. See [Conven
 - remove `run-check` job ([#9](https://github.com/teqm/libvmod-unleash/issues/9)) ([8d7a0f4](https://github.com/teqm/libvmod-unleash/commit/8d7a0f4859f5335c878434e1a6c28c8f09e189f5))
 - add arm64 support for debian package ([#14](https://github.com/teqm/libvmod-unleash/issues/14)) ([d290ec5](https://github.com/teqm/libvmod-unleash/commit/d290ec54609945b566065158822bd438613bd11c))
 - add codename to deb package ([3ae6e05](https://github.com/teqm/libvmod-unleash/commit/3ae6e05ab1f710d72fe0e47be2ca72d3ba4ccc7a))
+- fix matrix ([2a295e7](https://github.com/teqm/libvmod-unleash/commit/2a295e7fbff7a6636c116cc2b520b1819b7fa959))
 
 ### Documentation
 
