@@ -2,6 +2,9 @@ FROM centos:7
 
 ARG CARGO_NET_GIT_FETCH_WITH_CLI=true
 
+ARG VARNISH_VERSION
+ARG VMOD_REVISION
+
 RUN yum -y update && yum -y install \
       epel-release \
       yum-plugin-priorities \
@@ -35,7 +38,7 @@ COPY ./pkg/rpm/vmod-unleash.spec /root/rpmbuild/SPECS
 COPY . /root/rpmbuild/SOURCES/libvmod-unleash
 
 RUN cd /root/rpmbuild/SOURCES/ && \
-    tar -zcvf vmod-unleash-0.1.0.tar.gz libvmod-unleash
+    tar -zcvf vmod-unleash-$VARNISH_VERSION.tar.gz libvmod-unleash
 
 RUN LIBCLANG_PATH=/opt/rh/llvm-toolset-7/root/usr/lib64 \
     rpmbuild -ba /root/rpmbuild/SPECS/vmod-unleash.spec

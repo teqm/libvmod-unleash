@@ -1,6 +1,6 @@
 Name:           vmod-unleash
-Version:        0.1.0
-Release:        1%{?dist}
+Version:        %{getenv:VARNISH_VERSION}
+Release:        %{getenv:VMOD_REVISION}%{?dist}
 Group:          System Environment/Libraries
 URL:            https://github.com/teqm/libvmod-unleash
 Summary:        Unleash module for Varnish Cache
