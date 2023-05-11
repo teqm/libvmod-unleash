@@ -5,14 +5,14 @@ edition = "2021"
 repository = "https://github.com/teqm/libvmod-unleash"
 
 [build-dependencies]
-varnish = { git = "https://github.com/gquintard/varnish-rs", branch = "6.0" }
+varnish = "0.0.16"
 
 [dependencies]
 base64 = "0.21.0"
 tokio = { version = "1.27.0", features = ["full"] }
 unleash-client = { git = "https://github.com/teqm/unleash-client-rs", branch = "master" }
-varnish = { git = "https://github.com/gquintard/varnish-rs", branch = "6.0" }
-varnish-sys = { git = "https://github.com/gquintard/varnish-rs", branch = "6.0" }
+varnish = "0.0.16"
+varnish-sys = "0.0.16"
 serde = "1.0.160"
 serde_json = "1.0.96"
 tracing = "0.1.37"
