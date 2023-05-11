@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [6.0.11-1](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-1...v0.1.0) (2023-05-10)
+## [7.3.0-1](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-1...v7.3.0-1) (2023-05-11)
+
+### Documentation
+
+- fix cliff config ([#19](https://github.com/teqm/libvmod-unleash/issues/19)) ([dc777e3](https://github.com/teqm/libvmod-unleash/commit/dc777e3c380b9f1ae900c054838020b7a14ef695))
+
+### Features
+
+- use varnish 7.3 ([#18](https://github.com/teqm/libvmod-unleash/issues/18)) ([543f4b5](https://github.com/teqm/libvmod-unleash/commit/543f4b51e93cb2a424c90ef63497b0da6e7d1dae))
+
+## [6.0.11-1](https://github.com/teqm/libvmod-unleash/compare/v0.1.0...v6.0.11-1) (2023-05-10)
 
 ### Continuous Integration
 
