@@ -16,8 +16,8 @@ jobs:
 
       - name: Setup Varnish Cache
         run: |
-          curl -s https://packagecloud.io/install/repositories/varnishcache/varnish60lts/script.deb.sh | sudo bash
-          sudo apt-get install varnish=6.0.11-1~jammy varnish-dev=6.0.11-1~jammy
+          curl -s https://packagecloud.io/install/repositories/varnishcache/varnish73/script.deb.sh | sudo bash
+          sudo apt-get install varnish-dev
 
       - name: Setup Rust toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -54,8 +54,8 @@ jobs:
 
       - name: Setup Varnish Cache
         run: |
-          curl -s https://packagecloud.io/install/repositories/varnishcache/varnish60lts/script.deb.sh | sudo bash
-          sudo apt-get install varnish=6.0.11-1~jammy varnish-dev=6.0.11-1~jammy
+          curl -s https://packagecloud.io/install/repositories/varnishcache/varnish73/script.deb.sh | sudo bash
+          sudo apt-get install varnish-dev
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable

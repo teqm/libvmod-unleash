@@ -24,7 +24,7 @@ You'll need following dependencies:
 
 - `cargo` (and the accompanying `rust` package)
 - `python3`
-- the `varnish` 6.0 development libraries/headers
+- the `varnish` 7.3 development libraries/headers
 - OpenSSL versions 1.0.1 through 1.1.1 with headers (see [rust-openssl](https://github.com/sfackler/rust-openssl))
 - Clang 5.0 or greater (see [rust-bindgen](https://rust-lang.github.io/rust-bindgen/requirements.html))
 
