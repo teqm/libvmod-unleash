@@ -1658,7 +1658,7 @@ checksum = "830b7e5d4d90034032940e4ace0d9a9a057e7a45cd94e6c007832e39edb82f6d"
 [[package]]
 name = "varnish"
 version = "0.0.14"
-source = "git+https://github.com/gquintard/varnish-rs?branch=6.0#54b59647e5ad9d84fccf7d4f35d93be6f206e1b5"
+source = "git+https://github.com/teqm/varnish-rs?branch=6.0#a3d5d5475a048b68cc575dbf3413138166c447ea"
 dependencies = [
  "pkg-config",
  "serde",
@@ -1668,7 +1668,7 @@ dependencies = [
 [[package]]
 name = "varnish-sys"
 version = "0.0.14"
-source = "git+https://github.com/gquintard/varnish-rs?branch=6.0#54b59647e5ad9d84fccf7d4f35d93be6f206e1b5"
+source = "git+https://github.com/teqm/varnish-rs?branch=6.0#a3d5d5475a048b68cc575dbf3413138166c447ea"
 dependencies = [
  "bindgen",
  "pkg-config",

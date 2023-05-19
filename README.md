@@ -18,6 +18,11 @@ You may find it helpful to take a look at the following:
 
 Binary downloads of the Varnish VMOD can be found on [the Releases page](https://github.com/teqm/libvmod-unleash/releases).
 
+### From deb/rpm package (Varnish Enterprise)
+
+You can follow steps specified in Dockerfiles located in [pkg](pkg) directory, but instead of using open-source Varnish version,
+you'll have to [install Varnish Plus packages](https://docs.varnish-software.com/varnish-enterprise/installation/).
+
 ### From Source
 
 You'll need following dependencies:
