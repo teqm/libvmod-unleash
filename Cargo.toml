@@ -5,14 +5,14 @@ edition = "2021"
 repository = "https://github.com/teqm/libvmod-unleash"
 
 [build-dependencies]
-varnish = { git = "https://github.com/gquintard/varnish-rs", branch = "6.0" }
+varnish = { git = "https://github.com/teqm/varnish-rs", branch = "6.0" }
 
 [dependencies]
 base64 = "0.21.0"
 tokio = { version = "1.27.0", features = ["full"] }
 unleash-client = "0.1.0"
-varnish = { git = "https://github.com/gquintard/varnish-rs", branch = "6.0" }
-varnish-sys = { git = "https://github.com/gquintard/varnish-rs", branch = "6.0" }
+varnish = { git = "https://github.com/teqm/varnish-rs", branch = "6.0" }
+varnish-sys = { git = "https://github.com/teqm/varnish-rs", branch = "6.0" }
 serde = "1.0.160"
 serde_json = "1.0.96"
 tracing = "0.1.37"
@@ -28,5 +28,5 @@ crate-type = ["cdylib"]
 maintainer = "teqm <szybowskitomasz@gmail.com>"
 copyright = "2023, teqm <szybowskitomasz@gmail.com>"
 assets = [
-    ["target/release/libvmod_unleash.so", "usr/lib/varnish/vmods/", "644"]
+    ["target/release/libvmod_unleash.so", "usr/lib/varnish-plus/vmods/", "644"]
 ]

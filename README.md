@@ -14,9 +14,10 @@ You may find it helpful to take a look at the following:
 
 ## Installation
 
-### From the Binary Releases
+### From deb/rpm package
 
-Binary downloads of the Varnish VMOD can be found on [the Releases page](https://github.com/teqm/libvmod-unleash/releases).
+You can follow steps specified in Dockerfiles located in [pkg](pkg) directory, but instead
+of using open-source Varnish version, you'll have to [install Varnish Plus packages](https://docs.varnish-software.com/varnish-enterprise/installation/).
 
 ### From Source
 
@@ -24,7 +25,7 @@ You'll need following dependencies:
 
 - `cargo` (and the accompanying `rust` package)
 - `python3`
-- the `varnish` 6.0 development libraries/headers
+- the `varnish-plus` development libraries/headers
 - OpenSSL versions 1.0.1 through 1.1.1 with headers (see [rust-openssl](https://github.com/sfackler/rust-openssl))
 - Clang 5.0 or greater (see [rust-bindgen](https://rust-lang.github.io/rust-bindgen/requirements.html))
 
@@ -32,7 +33,7 @@ You'll need following dependencies:
 git clone https://github.com/teqm/libvmod-unleash.git
 cd libvmod-unleash
 cargo build --release
-cp ./target/release/libvmod_unleash.so {_libdir}/varnish/vmods/
+cp ./target/release/libvmod_unleash.so {_libdir}/varnish-plus/vmods/
 ```
 
 ## VCL examples
