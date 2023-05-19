@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.11-2](https://github.com/teqm/libvmod-unleash/compare/6.0.11-2...v6.0.11-1) (2023-05-19)
+
+### Features
+
+- add varnish plus support ([#25](https://github.com/teqm/libvmod-unleash/issues/25)) ([73b9808](https://github.com/teqm/libvmod-unleash/commit/73b98085d6b2e740f95ebf9419be5787e969c445))
+
+### Miscellaneous Tasks
+
+- use published version of unleash-client crate ([#23](https://github.com/teqm/libvmod-unleash/issues/23)) ([9a8e247](https://github.com/teqm/libvmod-unleash/commit/9a8e247d967aca0b2b5c76d7ebe4a73049f0df04))
+
 ## [6.0.11-1](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-1...v0.1.0) (2023-05-10)
 
 ### Continuous Integration
