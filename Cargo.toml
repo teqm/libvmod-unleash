@@ -32,7 +32,7 @@ assets = [
 ]
 
 [package.metadata.deb.variants.varnish-plus]
-name = "vmod_unleash"
+name = "vmod-unleash"
 assets = [
     ["target/release/libvmod_unleash.so", "usr/lib/varnish-plus/vmods/", "644"]
 ]
