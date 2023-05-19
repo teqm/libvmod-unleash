@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [6.0.11-2](https://github.com/teqm/libvmod-unleash/compare/6.0.11-2...v6.0.11-1) (2023-05-19)
+## [6.0.11-3](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-3...v6.0.11-2) (2023-05-19)
+
+### Bug Fixes
+
+- fix deb package name ([11cec79](https://github.com/teqm/libvmod-unleash/commit/11cec79cb9c380dcc59e508859f2e7a049c2f73a))
+
+## [6.0.11-2](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-2...v6.0.11-1) (2023-05-19)
 
 ### Features
 
