@@ -1595,7 +1595,8 @@ checksum = "c0edd1e5b14653f783770bce4a4dabb4a5108a5370a5f5d8cfe8710c361f6c8b"
 [[package]]
 name = "unleash-client"
 version = "0.1.0"
-source = "git+https://github.com/teqm/unleash-client-rs?branch=master#a2192c413c3a6e1219d2eae7496c61cf5464a945"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a355d4365d21c00238453d7b0b1ea4f63e4137f0e21aafd09e73977b5e6c2218"
 dependencies = [
  "chrono",
  "reqwest",
