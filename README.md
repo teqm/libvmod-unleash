@@ -70,9 +70,9 @@ sub vcl_init {
 sub vcl_recv {
     set req.http.x-variant = client.get_variant(name="toggle");
     
-    if (req.http-x-variant == "A") {
+    if (req.http.x-variant == "A") {
         # variant A
-    } else if (req.http-x-variant == "B") {
+    } else if (req.http.x-variant == "B") {
         # variant B
     } else {
         # variant C
