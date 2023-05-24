@@ -69,15 +69,15 @@ sub vcl_recv {
 import unleash;
 
 sub vcl_init {
-    new client = unleash.client(...);
+    new unleash_client = unleash.client(...);
 }
 
 sub vcl_recv {
-    set req.http.x-variant = client.get_variant(name="toggle");
+    set req.http.x-variant = unleash_client.get_variant(name="toggle");
     
-    if (req.http-x-variant == "A") {
+    if (req.http.x-variant == "A") {
         # variant A
-    } else if (req.http-x-variant == "B") {
+    } else if (req.http.x-variant == "B") {
         # variant B
     } else {
         # variant C
@@ -95,13 +95,13 @@ instead cache key is computed in VMOD itself and retrieved via `.get_hash()` met
 import unleash;
 
 sub vcl_init {
-    new client = unleash.client(...);
+    new unleash_client = unleash.client(...);
 }
 
 sub vcl_recv {
     # this header must be included in backend's Vary header,
     # to split the cache based on a computed feature set
-    set req.http.x-features = client.get_hash(
+    set req.http.x-features = unleash_client.get_hash(
         user_id=req.http.user-id,
         session_id=req.http.session-id);
 }
