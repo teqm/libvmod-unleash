@@ -2,6 +2,7 @@ varnish::boilerplate!();
 
 mod tracing_subscriber_vsl;
 
+use crate::tracing_subscriber_vsl::MakeVSLWriter;
 use base64::{engine::general_purpose::URL_SAFE_NO_PAD as base64_url, Engine};
 use serde::{Deserialize, Serialize};
 use std::collections::hash_map::DefaultHasher;
@@ -9,7 +10,10 @@ use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
 use std::sync::Arc;
 use std::time::Duration;
+use tracing::level_filters::LevelFilter;
 use tracing::{warn, Level};
+use tracing_subscriber::fmt::format::{DefaultFields, Format};
+use tracing_subscriber::fmt::Subscriber;
 use unleash_client::unleash::{Unleash, UnleashBuilder};
 use unleash_client::unleash_yggdrasil::{Context as UnleashContext, VariantDef};
 use varnish::vcl::ctx::Ctx;
@@ -20,12 +24,14 @@ varnish::vtc!(test03);
 varnish::vtc!(test04);
 varnish::vtc!(test05);
 varnish::vtc!(test06);
+varnish::vtc!(test07);
 
 const EMPTY_STRING: String = String::new();
 
 #[allow(non_camel_case_types)]
 struct client {
     unleash_client: Arc<Unleash>,
+    vsl_tracing_subscriber: Arc<Subscriber<DefaultFields, Format, LevelFilter, MakeVSLWriter>>,
 }
 
 fn try_props_from_str(s: &str) -> Result<HashMap<String, String>, ()> {
@@ -136,8 +142,12 @@ impl client {
         refresh_interval: Duration,
         disable_metrics: bool,
     ) -> Result<Self, String> {
-        tracing_subscriber_vsl::set_as_global_default(
-            log_level.parse::<Level>().unwrap_or(Level::WARN),
+        let vsl_tracing_subscriber = Arc::new(
+            tracing_subscriber::fmt()
+                .with_writer(MakeVSLWriter)
+                .with_ansi(false)
+                .with_max_level(log_level.parse::<Level>().unwrap_or(Level::WARN))
+                .finish(),
         );
 
         let unleash_client = Arc::new(
@@ -154,14 +164,20 @@ impl client {
         let rt = tokio::runtime::Runtime::new().unwrap();
 
         let poll_handle = unleash_client.clone();
+        let subscriber_handle = vsl_tracing_subscriber.clone();
 
         std::thread::spawn(move || {
+            let _guard = tracing::subscriber::set_default(subscriber_handle);
+
             rt.block_on(async move {
                 poll_handle.start().await;
             });
         });
 
-        Ok(client { unleash_client })
+        Ok(client {
+            unleash_client,
+            vsl_tracing_subscriber,
+        })
     }
 
     pub fn get_hash(
@@ -175,6 +191,8 @@ impl client {
         properties: Option<&str>,
         jwt: Option<&str>,
     ) -> String {
+        let _guard = tracing::subscriber::set_default(self.vsl_tracing_subscriber.clone());
+
         let context = Context {
             user_id,
             session_id,
@@ -223,6 +241,8 @@ impl client {
         properties: Option<&str>,
         jwt: Option<&str>,
     ) -> bool {
+        let _guard = tracing::subscriber::set_default(self.vsl_tracing_subscriber.clone());
+
         let context = Context {
             user_id,
             session_id,
@@ -248,6 +268,8 @@ impl client {
         properties: Option<&str>,
         jwt: Option<&str>,
     ) -> String {
+        let _guard = tracing::subscriber::set_default(self.vsl_tracing_subscriber.clone());
+
         let context = Context {
             user_id,
             session_id,
