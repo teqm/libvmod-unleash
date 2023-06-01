@@ -1,0 +1,23 @@
+varnishtest "unleash vmod - check discard"
+
+server s1 {} -start
+
+varnish v1 -vcl+backend {
+	import unleash from "${vmod}";
+
+    sub vcl_init {
+        new c = unleash.client(
+            url="http://${bad_ip}:4242",
+            log_level="trace",
+            token="*:development.abcdefghijklmnopqrstu");
+	}
+} -start
+
+varnish v1 -cliok {vcl.inline foo "vcl 4.1; backend default none; import unleash from \"${vmod}\"; sub vcl_init { new c = unleash.client(url=\"http://${bad_ip}:4241\", log_level=\"trace\", token=\"*:development.abcdefghijklmnopqrstu\"); }"}
+varnish v1 -cliok "vcl.use foo"
+varnish v1 -cliok "vcl.discard vcl1"
+
+client c1 {
+	txreq
+	rxresp
+} -run
