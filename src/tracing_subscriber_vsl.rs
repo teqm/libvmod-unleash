@@ -61,13 +61,3 @@ impl Default for VSLWriter {
         }
     }
 }
-
-pub fn set_as_global_default(level: Level) {
-    let subscriber = tracing_subscriber::fmt()
-        .with_writer(MakeVSLWriter)
-        .with_ansi(false)
-        .with_max_level(level)
-        .finish();
-
-    tracing::subscriber::set_global_default(subscriber).expect("setting default subscriber failed");
-}
