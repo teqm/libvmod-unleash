@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.0-2](https://github.com/teqm/libvmod-unleash/compare/v7.3.0-1...v7.3.0-2) (2023-06-01)
+
+### Bug Fixes
+
+- stop setting global tracing subscriber ([#29](https://github.com/teqm/libvmod-unleash/issues/29)) ([21bfb52](https://github.com/teqm/libvmod-unleash/commit/21bfb5280e004bad2d060d7f07f1df2b4d08a097))
+
+### Documentation
+
+- fix vcl syntax ([570d105](https://github.com/teqm/libvmod-unleash/commit/570d105be7c69a60bac08c9477b1d39c916bd03c))
+
+### Miscellaneous Tasks
+
+- use published version of `unleash-client` crate ([#21](https://github.com/teqm/libvmod-unleash/issues/21)) ([710332b](https://github.com/teqm/libvmod-unleash/commit/710332b9b07f49ea281372621c8851425ecd0bf9))
+- bump `unleash-client` ([#30](https://github.com/teqm/libvmod-unleash/issues/30)) ([a45e245](https://github.com/teqm/libvmod-unleash/commit/a45e245410bc2754f4dfeea4f18ac56755546142))
+
 ## [7.3.0-1](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-1...v7.3.0-1) (2023-05-11)
 
 ### Documentation
