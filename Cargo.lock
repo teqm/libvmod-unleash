@@ -1594,9 +1594,9 @@ checksum = "c0edd1e5b14653f783770bce4a4dabb4a5108a5370a5f5d8cfe8710c361f6c8b"
 
 [[package]]
 name = "unleash-client"
-version = "0.1.0"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a355d4365d21c00238453d7b0b1ea4f63e4137f0e21aafd09e73977b5e6c2218"
+checksum = "03f120d6c11228a673bbc34605201eedb37aaecabd289659217483260ed0941f"
 dependencies = [
  "chrono",
  "reqwest",
@@ -1620,9 +1620,9 @@ dependencies = [
 
 [[package]]
 name = "unleash-yggdrasil"
-version = "0.5.5"
+version = "0.5.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6ab8fc1501900e89d2287bef94018cc88bcc504d1abeb3bc9efc5d4472dc5658"
+checksum = "584b592b0236701b2280b1ca12e41d902f57ccf26897796d0d1b1f0fe8439291"
 dependencies = [
  "chrono",
  "convert_case",
