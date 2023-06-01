@@ -1,6 +1,6 @@
 [package]
 name = "vmod_unleash"
-version = "6.0.11-3"
+version = "6.0.11-4"
 edition = "2021"
 repository = "https://github.com/teqm/libvmod-unleash"
 
