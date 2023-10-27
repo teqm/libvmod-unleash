@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.0-3](https://github.com/teqm/libvmod-unleash/compare/v7.3.0-2...v7.3.0-3) (2023-10-27)
+
+### Miscellaneous Tasks
+
+- bump `unleash-client` ([#35](https://github.com/teqm/libvmod-unleash/issues/35)) ([eed4362](https://github.com/teqm/libvmod-unleash/commit/eed4362df59d23fe3c62f339d19628c595076897))
+
 ## [7.3.0-2](https://github.com/teqm/libvmod-unleash/compare/v7.3.0-1...v7.3.0-2) (2023-06-01)
 
 ### Bug Fixes
