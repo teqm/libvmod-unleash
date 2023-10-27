@@ -10,7 +10,7 @@ varnish = { git = "https://github.com/teqm/varnish-rs", branch = "6.0" }
 [dependencies]
 base64 = "0.21.0"
 tokio = { version = "1.27.0", features = ["full"] }
-unleash-client = "0.1.1"
+unleash-client = "0.1.2"
 varnish = { git = "https://github.com/teqm/varnish-rs", branch = "6.0" }
 varnish-sys = { git = "https://github.com/teqm/varnish-rs", branch = "6.0" }
 serde = "1.0.160"
