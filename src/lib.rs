@@ -203,7 +203,7 @@ impl client {
             jwt,
         };
 
-        let toggles = match self.unleash_client.resolve_all(&context.into()) {
+        let toggles = match self.unleash_client.resolve_all(&mut context.into()) {
             Some(toggles) => toggles,
             None => {
                 return EMPTY_STRING;
@@ -253,7 +253,7 @@ impl client {
             jwt,
         };
 
-        self.unleash_client.is_enabled(name, &context.into())
+        self.unleash_client.is_enabled(name, &mut context.into())
     }
 
     pub fn get_variant(
@@ -280,7 +280,7 @@ impl client {
             jwt,
         };
 
-        let variant = self.unleash_client.get_variant(name, &context.into());
+        let variant = self.unleash_client.get_variant(name, &mut context.into());
 
         variant.name
     }
