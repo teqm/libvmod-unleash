@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.0-4](https://github.com/teqm/libvmod-unleash/compare/v7.3.0-3...v7.3.0-4) (2024-02-29)
+
+### Bug Fixes
+
+- sort enabled toggles ([#40](https://github.com/teqm/libvmod-unleash/issues/40)) ([4e1e5b4](https://github.com/teqm/libvmod-unleash/commit/4e1e5b41f1e6f1827a6b3079f3fb44d3e339b2ab))
+
 ## [7.3.0-3](https://github.com/teqm/libvmod-unleash/compare/v7.3.0-2...v7.3.0-3) (2023-10-27)
 
 ### Miscellaneous Tasks
