@@ -222,7 +222,8 @@ impl client {
                     },
                 )
             })
-            .collect::<Vec<(_, _)>>();
+            .collect::<Vec<(_, _)>>()
+            .sort_by(|(a, _), (b, _)| a.cmp(b));
 
         let serialized = serde_json::to_vec(&enabled_toggles).unwrap();
 
