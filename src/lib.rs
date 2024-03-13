@@ -210,7 +210,7 @@ impl client {
             }
         };
 
-        let enabled_toggles = toggles
+        let mut enabled_toggles = toggles
             .iter()
             .filter(|(_, toggle)| toggle.enabled)
             .map(|(name, toggle)| {
@@ -222,8 +222,9 @@ impl client {
                     },
                 )
             })
-            .collect::<Vec<(_, _)>>()
-            .sort_by(|(a, _), (b, _)| a.cmp(b));
+            .collect::<Vec<(_, _)>>();
+
+        enabled_toggles.sort_by(|(a, _), (b, _)| a.cmp(b));
 
         let serialized = serde_json::to_vec(&enabled_toggles).unwrap();
 
