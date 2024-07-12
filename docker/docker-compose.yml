@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   libvmod-unleash.postgres:
     image: bitnami/postgresql:15
@@ -9,30 +7,33 @@ services:
       POSTGRESQL_USERNAME: unleash_user
       POSTGRESQL_PASSWORD: unleash_pass
       POSTGRESQL_DATABASE: unleash
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U unleash_user -d unleash" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     ports:
       - "5432:5432"
     networks:
       - libvmod-unleash
 
   libvmod-unleash.unleash-server:
-    image: unleashorg/unleash-server:4.22.5
     container_name: libvmod-unleash.unleash-server
     restart: unless-stopped
     environment:
       DATABASE_URL: postgres://unleash_user:unleash_pass@libvmod-unleash.postgres:5432/unleash
       DATABASE_SSL: 'false'
-      IMPORT_FILE: ./export-2023-04-20_19-24-48.json
+      IMPORT_FILE: ./export.json
       IMPORT_DROP_BEFORE_IMPORT: 'true'
       INIT_ADMIN_API_TOKENS: '*:*.964a287e1b728cb5f4f3e0120df92cb5'
       INIT_CLIENT_API_TOKENS: '*:development.964a287e1b728cb5f4f3e0120df92cb5'
     ports:
       - "4242:4242"
-    volumes:
-      - ./export-2023-04-20_19-24-48.json:/unleash/export-2023-04-20_19-24-48.json
     networks:
       - libvmod-unleash
     depends_on:
-      - libvmod-unleash.postgres
+      libvmod-unleash.postgres:
+        condition: service_healthy
 
 networks:
   libvmod-unleash:
