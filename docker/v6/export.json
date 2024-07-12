@@ -1,0 +1,89 @@
+{
+  "features": [
+    {
+      "name": "test-toggle",
+      "description": null,
+      "type": "experiment",
+      "project": "default",
+      "stale": false,
+      "impressionData": false,
+      "archived": false
+    },
+    {
+      "name": "test-toggle-2",
+      "description": null,
+      "type": "experiment",
+      "project": "default",
+      "stale": false,
+      "impressionData": false,
+      "archived": false
+    }
+  ],
+  "featureStrategies": [
+    {
+      "name": "flexibleRollout",
+      "id": "e0ec841e-0791-4faa-bdc3-da960c1e393f",
+      "featureName": "test-toggle",
+      "title": "",
+      "parameters": {
+        "groupId": "test-toggle",
+        "rollout": "100",
+        "stickiness": "default"
+      },
+      "constraints": [],
+      "variants": [
+        {
+          "name": "test-variant",
+          "weight": 1000,
+          "stickiness": "default",
+          "weightType": "variable"
+        }
+      ],
+      "disabled": false,
+      "segments": []
+    },
+    {
+      "name": "flexibleRollout",
+      "id": "91a0d354-e065-4781-a03b-30886cbdd607",
+      "featureName": "test-toggle-2",
+      "title": "",
+      "parameters": {
+        "groupId": "test-toggle-2",
+        "rollout": "100",
+        "stickiness": "default"
+      },
+      "constraints": [],
+      "variants": [
+        {
+          "name": "test-variant",
+          "weight": 1000,
+          "stickiness": "default",
+          "weightType": "variable"
+        }
+      ],
+      "disabled": false,
+      "segments": []
+    }
+  ],
+  "featureEnvironments": [
+    {
+      "enabled": true,
+      "featureName": "test-toggle",
+      "environment": "development",
+      "variants": [],
+      "name": "test-toggle"
+    },
+    {
+      "enabled": true,
+      "featureName": "test-toggle-2",
+      "environment": "development",
+      "variants": [],
+      "name": "test-toggle-2"
+    }
+  ],
+  "contextFields": [],
+  "featureTags": [],
+  "segments": [],
+  "tagTypes": [],
+  "dependencies": []
+}
