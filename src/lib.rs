@@ -15,7 +15,7 @@ use tracing::{warn, Level};
 use tracing_subscriber::fmt::format::{DefaultFields, Format};
 use tracing_subscriber::fmt::Subscriber;
 use unleash_client::unleash::{Unleash, UnleashBuilder};
-use unleash_client::unleash_yggdrasil::{Context as UnleashContext, VariantDef};
+use unleash_client::unleash_yggdrasil::{Context as UnleashContext, ExtendedVariantDef};
 use varnish::vcl::ctx::Ctx;
 
 varnish::vtc!(test01);
@@ -129,7 +129,7 @@ impl Into<UnleashContext> for Context<'_> {
 #[derive(Serialize)]
 struct ResolvedToggle<'a> {
     project: &'a String,
-    variant: &'a VariantDef,
+    variant: &'a ExtendedVariantDef,
 }
 
 impl client {

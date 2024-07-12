@@ -20,5 +20,5 @@ client c1 {
     delay 0.5
 	txreq -url "/"
 	rxresp
-	expect resp.http.x-hash == "8ac5fb2f1869fe44"
+	expect resp.http.x-hash == "e3ffd1edd8b00e70"
 } -run

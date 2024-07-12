@@ -1,0 +1,155 @@
+{
+  "version": 4,
+  "features": [
+    {
+      "name": "test-toggle",
+      "description": null,
+      "type": "experiment",
+      "project": "default",
+      "stale": false,
+      "createdAt": "2024-07-12T12:54:05.183Z",
+      "lastSeenAt": null,
+      "impressionData": false,
+      "archivedAt": null,
+      "archived": false
+    },
+    {
+      "name": "test-toggle-2",
+      "description": null,
+      "type": "experiment",
+      "project": "default",
+      "stale": false,
+      "createdAt": "2024-07-12T12:55:47.617Z",
+      "lastSeenAt": null,
+      "impressionData": false,
+      "archivedAt": null,
+      "archived": false
+    }
+  ],
+  "strategies": [],
+  "projects": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default project",
+      "createdAt": "2024-07-12T12:51:35.960Z",
+      "health": 100,
+      "updatedAt": "2024-07-12T12:52:01.935Z",
+      "mode": "open",
+      "defaultStickiness": "default",
+      "featureNaming": {}
+    }
+  ],
+  "tagTypes": [
+    {
+      "name": "simple",
+      "description": "Used to simplify filtering of features",
+      "icon": "#"
+    }
+  ],
+  "tags": [],
+  "featureTags": [],
+  "featureStrategies": [
+    {
+      "id": "4572522d-9c58-4cc5-95c4-fa3f4070267f",
+      "featureName": "test-toggle",
+      "projectId": "default",
+      "environment": "development",
+      "strategyName": "flexibleRollout",
+      "title": null,
+      "parameters": {
+        "groupId": "test-toggle",
+        "rollout": "100",
+        "stickiness": "default"
+      },
+      "constraints": [],
+      "variants": [],
+      "createdAt": "2024-07-12T12:54:15.767Z",
+      "disabled": false
+    },
+    {
+      "id": "8df44b5d-7e7a-42db-9383-d793fa99e294",
+      "featureName": "test-toggle-2",
+      "projectId": "default",
+      "environment": "development",
+      "strategyName": "flexibleRollout",
+      "title": null,
+      "parameters": {
+        "groupId": "test-toggle-2",
+        "rollout": "100",
+        "stickiness": "default"
+      },
+      "constraints": [],
+      "variants": [],
+      "createdAt": "2024-07-12T12:55:49.424Z",
+      "disabled": false
+    }
+  ],
+  "environments": [
+    {
+      "name": "default",
+      "type": "production",
+      "sortOrder": 1,
+      "enabled": false,
+      "protected": true
+    },
+    {
+      "name": "development",
+      "type": "development",
+      "sortOrder": 2,
+      "enabled": true,
+      "protected": false
+    },
+    {
+      "name": "production",
+      "type": "production",
+      "sortOrder": 3,
+      "enabled": true,
+      "protected": false
+    }
+  ],
+  "featureEnvironments": [
+    {
+      "enabled": false,
+      "featureName": "test-toggle",
+      "environment": "production",
+      "variants": []
+    },
+    {
+      "enabled": true,
+      "featureName": "test-toggle",
+      "environment": "development",
+      "variants": [
+        {
+          "name": "test-variant",
+          "weight": 1000,
+          "overrides": [],
+          "stickiness": "default",
+          "weightType": "variable"
+        }
+      ]
+    },
+    {
+      "enabled": false,
+      "featureName": "test-toggle-2",
+      "environment": "production",
+      "variants": []
+    },
+    {
+      "enabled": true,
+      "featureName": "test-toggle-2",
+      "environment": "development",
+      "variants": [
+        {
+          "name": "test-variant",
+          "weight": 1000,
+          "overrides": [],
+          "stickiness": "default",
+          "weightType": "variable"
+        }
+      ]
+    }
+  ],
+  "segments": [],
+  "featureStrategySegments": []
+}

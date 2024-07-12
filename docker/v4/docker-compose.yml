@@ -1,0 +1,5 @@
+services:
+  libvmod-unleash.unleash-server:
+    image: unleashorg/unleash-server:4.22.5
+    volumes:
+      - ./v4/export.json:/unleash/export.json
