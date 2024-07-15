@@ -181,7 +181,11 @@ impl client {
         })
     }
 
-    fn _resolve_all(&self, context: Context, only_enabled: bool) -> Option<Vec<(String, ResolvedToggle)>> {
+    fn _resolve_all(
+        &self,
+        context: Context,
+        only_enabled: bool,
+    ) -> Option<Vec<(String, ResolvedToggle)>> {
         let toggles = match self.unleash_client.resolve_all(&mut context.into()) {
             Some(toggles) => toggles,
             None => {
@@ -193,7 +197,7 @@ impl client {
             .into_iter()
             .filter(|(_, toggle)| match only_enabled {
                 true => toggle.enabled,
-                _ => true
+                _ => true,
             })
             .map(|(name, toggle)| {
                 (
@@ -276,7 +280,11 @@ impl client {
             }
         };
 
-        toggles.iter().map(|(name, toggle)| format!("{}={}", name, toggle.variant.name)).collect::<Vec<_>>().join(",")
+        toggles
+            .iter()
+            .map(|(name, toggle)| format!("{}={}", name, toggle.variant.name))
+            .collect::<Vec<_>>()
+            .join(",")
     }
 
     pub fn is_enabled(
