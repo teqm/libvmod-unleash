@@ -106,3 +106,21 @@ sub vcl_recv {
         session_id=req.http.session-id);
 }
 ```
+
+or via `.resolve_all()` method if you want to use the VMOD as a single source of truth for resolving toggles
+
+```vcl
+import unleash;
+
+sub vcl_init {
+    new unleash_client = unleash.client(...);
+}
+
+sub vcl_recv {
+    # this header must be included in backend's Vary header,
+    # to split the cache based on a computed feature set
+    set req.http.x-features = unleash_client.resolve_all(
+        user_id=req.http.user-id,
+        session_id=req.http.session-id);
+}
+```
