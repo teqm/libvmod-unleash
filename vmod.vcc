@@ -45,6 +45,33 @@ Return value
     A `STRING` that contains the hash of computed feature set for the given context.
     If no Unleash data has been fetched yet, an empty string is returned.
 
+$Method STRING .resolve_all(
+                [STRING user_id],
+                [STRING session_id],
+                [STRING environment],
+                [STRING app_name],
+                [STRING remote_address],
+                [STRING properties],
+                [STRING jwt])
+
+Arguments
+    user_id: id of the user.
+
+    session_id: id of the session.
+
+    environment: environment this application is running in.
+
+    app_name: the application name.
+
+    remote_address: IP address of the machine or client.
+
+    properties: comma-separated list of additional properties, for example `foo=bar,bar=baz`.
+
+    jwt: fallback identifier for the current user, used if `user_id` is not specified
+Return value
+    A `STRING` that contains the comma-separated list of resolved features, for example `toggle1=enabled,toggle2=disabled`
+    If no Unleash data has been fetched yet, an empty string is returned.
+
 $Method BOOL .is_enabled(
               STRING name,
               [STRING user_id],
