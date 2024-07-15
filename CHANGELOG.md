@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.11-7](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-7...v6.0.11-6) (2024-07-15)
+
+### Bug Fixes
+
+- `sort_by` doesn't return ([cf6ec79](https://github.com/teqm/libvmod-unleash/commit/cf6ec79a3a40890ee6c65113b86a30fee7341cf0))
+
+### Features
+
+- add `.resolve_all()` method ([#45](https://github.com/teqm/libvmod-unleash/issues/45)) ([2bc58ca](https://github.com/teqm/libvmod-unleash/commit/2bc58ca387d548b69eb06a9ac4483145cc8b24b5))
+
+### Miscellaneous Tasks
+
+- update `unleash-client` ([#43](https://github.com/teqm/libvmod-unleash/issues/43)) ([44010b8](https://github.com/teqm/libvmod-unleash/commit/44010b88ed70ffdf140216d291399987d907887c))
+
 ## [6.0.11-6](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-6...v6.0.11-5) (2024-02-29)
 
 ### Bug Fixes
