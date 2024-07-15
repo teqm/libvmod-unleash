@@ -25,6 +25,7 @@ varnish::vtc!(test04);
 varnish::vtc!(test05);
 varnish::vtc!(test06);
 varnish::vtc!(test07);
+varnish::vtc!(test08);
 
 const EMPTY_STRING: String = String::new();
 
@@ -127,9 +128,9 @@ impl Into<UnleashContext> for Context<'_> {
 }
 
 #[derive(Serialize)]
-struct ResolvedToggle<'a> {
-    project: &'a String,
-    variant: &'a ExtendedVariantDef,
+struct ResolvedToggle {
+    project: String,
+    variant: ExtendedVariantDef,
 }
 
 impl client {
@@ -180,6 +181,40 @@ impl client {
         })
     }
 
+    fn _resolve_all(
+        &self,
+        context: Context,
+        only_enabled: bool,
+    ) -> Option<Vec<(String, ResolvedToggle)>> {
+        let toggles = match self.unleash_client.resolve_all(&mut context.into()) {
+            Some(toggles) => toggles,
+            None => {
+                return None;
+            }
+        };
+
+        let mut mapped_toggles = toggles
+            .into_iter()
+            .filter(|(_, toggle)| match only_enabled {
+                true => toggle.enabled,
+                _ => true,
+            })
+            .map(|(name, toggle)| {
+                (
+                    name,
+                    ResolvedToggle {
+                        project: toggle.project,
+                        variant: toggle.variant,
+                    },
+                )
+            })
+            .collect::<Vec<(_, _)>>();
+
+        mapped_toggles.sort_by(|(a, _), (b, _)| a.cmp(b));
+
+        Some(mapped_toggles)
+    }
+
     pub fn get_hash(
         &self,
         _ctx: &mut Ctx,
@@ -203,32 +238,53 @@ impl client {
             jwt,
         };
 
-        let toggles = match self.unleash_client.resolve_all(&mut context.into()) {
+        let enabled_toggles = match self._resolve_all(context, true) {
+            Some(enabled_toggles) => enabled_toggles,
+            None => {
+                return EMPTY_STRING;
+            }
+        };
+
+        let serialized = serde_json::to_vec(&enabled_toggles).unwrap();
+
+        format!("{:x}", calculate_hash(&serialized))
+    }
+
+    pub fn resolve_all(
+        &self,
+        _ctx: &mut Ctx,
+        user_id: Option<&str>,
+        session_id: Option<&str>,
+        environment: Option<&str>,
+        app_name: Option<&str>,
+        remote_address: Option<&str>,
+        properties: Option<&str>,
+        jwt: Option<&str>,
+    ) -> String {
+        let _guard = tracing::subscriber::set_default(self.vsl_tracing_subscriber.clone());
+
+        let context = Context {
+            user_id,
+            session_id,
+            environment,
+            app_name,
+            remote_address,
+            properties,
+            jwt,
+        };
+
+        let toggles = match self._resolve_all(context, false) {
             Some(toggles) => toggles,
             None => {
                 return EMPTY_STRING;
             }
         };
 
-        let mut enabled_toggles = toggles
+        toggles
             .iter()
-            .filter(|(_, toggle)| toggle.enabled)
-            .map(|(name, toggle)| {
-                (
-                    name,
-                    ResolvedToggle {
-                        project: &toggle.project,
-                        variant: &toggle.variant,
-                    },
-                )
-            })
-            .collect::<Vec<(_, _)>>();
-
-        enabled_toggles.sort_by(|(a, _), (b, _)| a.cmp(b));
-
-        let serialized = serde_json::to_vec(&enabled_toggles).unwrap();
-
-        format!("{:x}", calculate_hash(&serialized))
+            .map(|(name, toggle)| format!("{}={}", name, toggle.variant.name))
+            .collect::<Vec<_>>()
+            .join(",")
     }
 
     pub fn is_enabled(
@@ -296,8 +352,12 @@ mod test {
 
     #[test_case(".eyJzdWIiOiIxMjM0NSJ9.", Some("12345"); "should decode sub claim")]
     #[test_case(".e30.", None; "should return none when sub claim is missing")]
-    #[test_case(".abcdefghijklmnopqrstu.", None; "should return none when payload is an invalid base64")]
-    #[test_case("eyJzdWIiOiIxMjM0NSJ9", None; "should return none when jwt is missing header or signature")]
+    #[test_case(
+        ".abcdefghijklmnopqrstu.", None; "should return none when payload is an invalid base64"
+    )]
+    #[test_case(
+        "eyJzdWIiOiIxMjM0NSJ9", None; "should return none when jwt is missing header or signature"
+    )]
     pub fn test_decode_jwt(token: &str, expected: Option<&str>) {
         assert_eq!(
             decode_jwt(token).map(|claims| claims.sub),
@@ -305,7 +365,9 @@ mod test {
         );
     }
 
-    #[test_case(Some("userId"), Some(".eyJzdWIiOiIxMjM0NSJ9."), Some("userId"); "should use user_id if present")]
+    #[test_case(
+        Some("userId"), Some(".eyJzdWIiOiIxMjM0NSJ9."), Some("userId"); "should use user_id if present"
+    )]
     #[test_case(None, Some(".eyJzdWIiOiIxMjM0NSJ9."), Some("12345"); "should fallback to jwt")]
     pub fn test_context_user_id(user_id: Option<&str>, jwt: Option<&str>, expected: Option<&str>) {
         let context = Context {
