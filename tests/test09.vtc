@@ -22,7 +22,7 @@ client c1 {
     delay 0.5
 	txreq -url "/"
 	rxresp
-	expect resp.http.x-with-user    == "true"
-	expect resp.http.x-empty-user   == "false"
+	expect resp.http.x-with-user == "true"
+	expect resp.http.x-empty-user == "false"
 	expect resp.http.x-missing-user == "false"
 } -run
