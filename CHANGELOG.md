@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.11-8](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-8...v6.0.11-7) (2026-06-12)
+
+### Continuous Integration
+
+- bump git-cliff-action ([8839511](https://github.com/teqm/libvmod-unleash/commit/883951156d6ca67e1c27ca26c7c4dd92ce143c8e))
+
+### Features
+
+- bring changes to 6.0 ([#51](https://github.com/teqm/libvmod-unleash/issues/51)) ([2864159](https://github.com/teqm/libvmod-unleash/commit/2864159fdc7d46196b1d5e7d00ff9ea8cae9ed42))
+
 ## [6.0.11-7](https://github.com/teqm/libvmod-unleash/compare/v6.0.11-7...v6.0.11-6) (2024-07-15)
 
 ### Bug Fixes
