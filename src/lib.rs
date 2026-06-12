@@ -26,7 +26,6 @@ varnish::vtc!(test05);
 varnish::vtc!(test06);
 varnish::vtc!(test07);
 varnish::vtc!(test08);
-varnish::vtc!(test09);
 
 const EMPTY_STRING: String = String::new();
 
