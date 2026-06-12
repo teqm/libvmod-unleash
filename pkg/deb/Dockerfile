@@ -1,4 +1,4 @@
-FROM debian:12
+FROM debian:11
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG CARGO_NET_GIT_FETCH_WITH_CLI=true
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get -y install \
       pkg-config \
       python3-docutils
 
-RUN curl -s https://packagecloud.io/install/repositories/varnishcache/varnish74/script.deb.sh | bash
+RUN curl -s https://packagecloud.io/install/repositories/varnishcache/varnish73/script.deb.sh | bash
 
 RUN apt-get -y install \
       varnish-dev

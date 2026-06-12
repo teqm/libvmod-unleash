@@ -8,7 +8,7 @@ on:
 
 jobs:
   run-linter:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout
@@ -16,7 +16,7 @@ jobs:
 
       - name: Setup Varnish Cache
         run: |
-          curl -s https://packagecloud.io/install/repositories/varnishcache/varnish74/script.deb.sh | sudo bash
+          curl -s https://packagecloud.io/install/repositories/varnishcache/varnish73/script.deb.sh | sudo bash
           sudo apt-get install varnish-dev
 
       - name: Setup Rust toolchain
@@ -28,7 +28,7 @@ jobs:
         run: cargo clippy --all-targets --all-features
 
   run-fmt:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout
@@ -51,7 +51,7 @@ jobs:
           - v5
           - v6
           - v7
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout
@@ -62,7 +62,7 @@ jobs:
 
       - name: Setup Varnish Cache
         run: |
-          curl -s https://packagecloud.io/install/repositories/varnishcache/varnish74/script.deb.sh | sudo bash
+          curl -s https://packagecloud.io/install/repositories/varnishcache/varnish73/script.deb.sh | sudo bash
           sudo apt-get install varnish-dev
 
       - name: Setup Rust
