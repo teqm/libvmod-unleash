@@ -20,5 +20,5 @@ client c1 {
     delay 0.5
 	txreq -url "/"
 	rxresp
-	expect resp.http.x-toggles == "test-toggle=test-variant,test-toggle-2=test-variant"
+	expect resp.http.x-toggles == "test-toggle=test-variant,test-toggle-2=test-variant,test-userid-stickiness=disabled"
 } -run

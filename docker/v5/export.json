@@ -24,6 +24,18 @@
       "impressionData": false,
       "archivedAt": null,
       "archived": false
+    },
+    {
+      "name": "test-userid-stickiness",
+      "description": null,
+      "type": "experiment",
+      "project": "default",
+      "stale": false,
+      "createdAt": "2024-07-12T12:56:00.000Z",
+      "lastSeenAt": null,
+      "impressionData": false,
+      "archivedAt": null,
+      "archived": false
     }
   ],
   "strategies": [],
@@ -82,6 +94,23 @@
       "constraints": [],
       "variants": [],
       "createdAt": "2024-07-12T12:55:49.424Z",
+      "disabled": false
+    },
+    {
+      "id": "c1a2b3c4-d5e6-7890-abcd-ef1234567890",
+      "featureName": "test-userid-stickiness",
+      "projectId": "default",
+      "environment": "development",
+      "strategyName": "flexibleRollout",
+      "title": null,
+      "parameters": {
+        "groupId": "test-userid-stickiness",
+        "rollout": "100",
+        "stickiness": "userId"
+      },
+      "constraints": [],
+      "variants": [],
+      "createdAt": "2024-07-12T12:56:00.000Z",
       "disabled": false
     }
   ],
@@ -148,6 +177,18 @@
           "weightType": "variable"
         }
       ]
+    },
+    {
+      "enabled": false,
+      "featureName": "test-userid-stickiness",
+      "environment": "production",
+      "variants": []
+    },
+    {
+      "enabled": true,
+      "featureName": "test-userid-stickiness",
+      "environment": "development",
+      "variants": []
     }
   ],
   "segments": [],

@@ -24,6 +24,18 @@
       "impressionData": false,
       "archivedAt": null,
       "archived": false
+    },
+    {
+      "name": "test-userid-stickiness",
+      "description": "",
+      "type": "experiment",
+      "project": "default",
+      "stale": false,
+      "createdAt": "2023-04-20T18:39:05.489Z",
+      "lastSeenAt": null,
+      "impressionData": false,
+      "archivedAt": null,
+      "archived": false
     }
   ],
   "strategies": [],
@@ -49,6 +61,20 @@
       "environment": "development",
       "strategyName": "default",
       "parameters": {},
+      "constraints": [],
+      "createdAt": "2023-04-20T18:39:14.923Z"
+    },
+    {
+      "id": "c1a2b3c4-d5e6-7890-abcd-ef1234567890",
+      "featureName": "test-userid-stickiness",
+      "projectId": "default",
+      "environment": "development",
+      "strategyName": "flexibleRollout",
+      "parameters": {
+        "groupId": "test-userid-stickiness",
+        "rollout": "100",
+        "stickiness": "userId"
+      },
       "constraints": [],
       "createdAt": "2023-04-20T18:39:14.923Z"
     }
@@ -114,6 +140,18 @@
     {
       "enabled": false,
       "featureName": "test-toggle-2",
+      "environment": "production",
+      "variants": []
+    },
+    {
+      "enabled": true,
+      "featureName": "test-userid-stickiness",
+      "environment": "development",
+      "variants": []
+    },
+    {
+      "enabled": false,
+      "featureName": "test-userid-stickiness",
       "environment": "production",
       "variants": []
     }
