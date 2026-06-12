@@ -21,7 +21,7 @@ RUN yum -y update && yum -y install \
       && yum -y install llvm-toolset-7 \
       && yum clean all
 
-RUN curl -s https://packagecloud.io/install/repositories/varnishcache/varnish74/script.rpm.sh | bash
+RUN curl -s https://packagecloud.io/install/repositories/varnishcache/varnish73/script.rpm.sh | bash
 
 RUN yum -y install \
       varnish-devel
