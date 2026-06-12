@@ -17,7 +17,7 @@ RUN apt-get update && apt-get -y install \
 RUN curl -s https://packagecloud.io/install/repositories/varnishcache/varnish73/script.deb.sh | bash
 
 RUN apt-get -y install \
-      varnish-dev
+      varnish-dev=7.3.2-1~bullseye
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
