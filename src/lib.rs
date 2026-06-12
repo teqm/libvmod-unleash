@@ -26,6 +26,7 @@ varnish::vtc!(test05);
 varnish::vtc!(test06);
 varnish::vtc!(test07);
 varnish::vtc!(test08);
+varnish::vtc!(test09);
 
 const EMPTY_STRING: String = String::new();
 
@@ -100,11 +101,15 @@ impl Default for Context<'_> {
 impl Into<UnleashContext> for Context<'_> {
     fn into(self) -> UnleashContext {
         UnleashContext {
-            user_id: self.user_id.map(String::from).or_else(|| {
-                self.jwt
-                    .map(|jwt| decode_jwt(jwt).map(|claims| claims.sub))
-                    .flatten()
-            }),
+            user_id: self
+                .user_id
+                .filter(|user_id| !user_id.is_empty())
+                .map(String::from)
+                .or_else(|| {
+                    self.jwt
+                        .map(|jwt| decode_jwt(jwt).map(|claims| claims.sub))
+                        .flatten()
+                }),
             session_id: self.session_id.map(String::from),
             environment: self.environment.map(String::from),
             app_name: self.app_name.map(String::from),
@@ -369,6 +374,8 @@ mod test {
         Some("userId"), Some(".eyJzdWIiOiIxMjM0NSJ9."), Some("userId"); "should use user_id if present"
     )]
     #[test_case(None, Some(".eyJzdWIiOiIxMjM0NSJ9."), Some("12345"); "should fallback to jwt")]
+    #[test_case(Some(""), Some(".eyJzdWIiOiIxMjM0NSJ9."), Some("12345"); "should fallback to jwt when user_id is empty")]
+    #[test_case(Some(""), None, None; "should return none when user_id is empty and jwt is missing")]
     pub fn test_context_user_id(user_id: Option<&str>, jwt: Option<&str>, expected: Option<&str>) {
         let context = Context {
             user_id,
