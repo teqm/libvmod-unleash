@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.3.0-6](https://github.com/teqm/libvmod-unleash/compare/v7.3.0-5...v7.3.0-6) (2026-06-12)
+
+### Bug Fixes
+
+- treat empty user_id values as None ([#50](https://github.com/teqm/libvmod-unleash/issues/50)) ([88e8f7b](https://github.com/teqm/libvmod-unleash/commit/88e8f7b5f7a721a86bffda3f7997561b1063e4db))
+- use varnish73 across ([c7c5d52](https://github.com/teqm/libvmod-unleash/commit/c7c5d52bc7f05911636124ee2e7a25647764ac80))
+
+### Continuous Integration
+
+- bump git-cliff-action ([a25a841](https://github.com/teqm/libvmod-unleash/commit/a25a841a2136ca9e7ce7f1f5cf1eb8bebabe7098))
+
+### Features
+
+- add unleash-server@7 to the matrix ([#49](https://github.com/teqm/libvmod-unleash/issues/49)) ([a3cb67f](https://github.com/teqm/libvmod-unleash/commit/a3cb67f459f826a907930e98c50e24707ed2c095))
+
 ## [7.3.0-5](https://github.com/teqm/libvmod-unleash/compare/v7.3.0-4...v7.3.0-5) (2024-07-15)
 
 ### Bug Fixes
