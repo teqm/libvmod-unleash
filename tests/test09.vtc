@@ -1,0 +1,28 @@
+varnishtest "unleash vmod empty user_id falls back to session_id"
+
+server s1 {} -start
+
+varnish v1 -vcl+backend {
+	import unleash from "${vmod}";
+
+    sub vcl_init {
+        new c = unleash.client(
+            url="http://localhost:4242",
+            token="*:development.964a287e1b728cb5f4f3e0120df92cb5");
+	}
+
+	sub vcl_deliver {
+		set resp.http.x-with-user    = c.is_enabled(name="test-userid-stickiness", user_id="some-user", session_id="123456");
+		set resp.http.x-empty-user   = c.is_enabled(name="test-userid-stickiness", user_id="", session_id="123456");
+		set resp.http.x-missing-user = c.is_enabled(name="test-userid-stickiness", session_id="123456");
+	}
+} -start
+
+client c1 {
+    delay 0.5
+	txreq -url "/"
+	rxresp
+	expect resp.http.x-with-user    == "true"
+	expect resp.http.x-empty-user   == "false"
+	expect resp.http.x-missing-user == "false"
+} -run

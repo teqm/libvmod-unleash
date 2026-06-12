@@ -17,6 +17,15 @@
       "stale": false,
       "impressionData": false,
       "archived": false
+    },
+    {
+      "name": "test-userid-stickiness",
+      "description": null,
+      "type": "experiment",
+      "project": "default",
+      "stale": false,
+      "impressionData": false,
+      "archived": false
     }
   ],
   "featureStrategies": [
@@ -63,6 +72,21 @@
       ],
       "disabled": false,
       "segments": []
+    },
+    {
+      "name": "flexibleRollout",
+      "id": "c1a2b3c4-d5e6-7890-abcd-ef1234567890",
+      "featureName": "test-userid-stickiness",
+      "title": "",
+      "parameters": {
+        "groupId": "test-userid-stickiness",
+        "rollout": "100",
+        "stickiness": "userId"
+      },
+      "constraints": [],
+      "variants": [],
+      "disabled": false,
+      "segments": []
     }
   ],
   "featureEnvironments": [
@@ -79,6 +103,13 @@
       "environment": "development",
       "variants": [],
       "name": "test-toggle-2"
+    },
+    {
+      "enabled": true,
+      "featureName": "test-userid-stickiness",
+      "environment": "development",
+      "variants": [],
+      "name": "test-userid-stickiness"
     }
   ],
   "contextFields": [],
