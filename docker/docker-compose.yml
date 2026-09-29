@@ -1,6 +1,6 @@
 services:
   libvmod-unleash.postgres:
-    image: bitnamilegacy/postgresql:15
+    image: soldevelo/postgresql:15
     container_name: libvmod-unleash.postgres
     restart: unless-stopped
     environment:
